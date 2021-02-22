@@ -1,0 +1,149 @@
+@import "variables";
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  max-width: 420px;
+  width: 90%;
+  @media (min-width: $breakpoint-1 + 1) {
+    width: 420px;
+  }
+  height: 300px;
+  border: 1px solid #999;
+  border-radius: 8px;
+
+  .content_and_buttons {
+    flex: 1;
+    //background: chocolate;
+
+
+
+    display: flex;
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      margin-left: 8px;
+      .logo_and_title {
+        flex-basis: 64px;
+        //background: darkorange;
+        margin-top: 8px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid lightgray;
+        display: flex;
+        .logo {
+          flex-basis: 64px;
+          width: 64px;
+          height: 64px;
+          //background: brown;
+          border-radius: 8px;
+          img {
+            width: 64px;
+            height: 64px;
+          }
+          span {
+            height: 64px;
+            width: 64px;
+            overflow: hidden;
+            font-size: 60px;
+            line-height: 64px;
+            text-align: center;
+            color: gray;
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            &.disabled {
+              opacity: 0 !important;
+              cursor: default !important;
+            }
+            &:hover {
+              opacity: 0.4;
+            }
+          }
+        }
+        .title {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding-left: 16px;
+          #title {
+            font-size: 28px;
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+          }
+        }
+      }
+      .description {
+        flex: 1;
+        //background: #4bbd5c;
+        padding: 8px;
+        textarea {
+          width: 100%;
+          height: 100%;
+          border:none;
+          outline: none;
+          resize: none;
+          overflow: hidden;
+        }
+      }
+    }
+    .buttons {
+      flex-basis: 40px;
+      //background: darkturquoise;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid lightgray;
+      span {
+        margin: 10px auto;
+        color: gray;
+        border-radius: 8px;
+        cursor: pointer;
+        border: 1px solid white;
+        &:hover {
+          border: 1px solid lightgray;
+        }
+      }
+    }
+  }
+
+  .footer {
+    flex-basis: 64px;
+    //background: #eee;
+    border-top: 1px solid lightgray;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    font-size: 28px;
+    div {
+      margin: auto 0;
+    }
+    .date input {
+      font-size: 20px;
+      color: #999999;
+      border: none;
+      outline: none ;
+    }
+
+    .amount {
+      font-weight: bold;
+      position: relative;
+      flex-basis: 200px;
+      text-align: right;
+      input {
+        width: 100%;
+        text-align: right;
+        opacity: 0;
+        position: absolute;
+        left:0;
+        outline: none;
+        border: none;
+        &:focus {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

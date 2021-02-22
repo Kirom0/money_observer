@@ -1,0 +1,12 @@
+.body {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.body .left-side {
+  display: inline;
+  background: aqua;
+}
+.body .right-side {
+  display: inline;
+  background: darkturquoise;
+}

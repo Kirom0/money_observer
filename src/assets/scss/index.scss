@@ -1,0 +1,45 @@
+@import "normalize";
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+@import "item-info";
+@import "item-list";
+@import "main-page";
+@import "variables";
+@import "modal";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'PT Sans';
+}
+
+body ._forbid-scroll {
+  overflow: hidden;
+}
+
+.header {
+  height: 80px;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
+  span {
+    font-size:36px;
+    @media (min-width: 481px) {
+      font-size: 42px;
+    }
+    margin: auto 0;
+  }
+}
+
+.amount {
+  &.cost {
+    color: red;
+  }
+  &.coming {
+    color: #4bbd5c;
+  }
+}
+
+input:disabled {
+  background: inherit;
+}
