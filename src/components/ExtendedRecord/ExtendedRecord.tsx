@@ -1,6 +1,6 @@
 import React from 'react';
 import {AmountInput} from "./AmountInput";
-import {areDaysEqual, IRecord} from "../../interfaces/IRecord";
+import {IRecord} from "../../interfaces/IRecord";
 import {connect} from "react-redux";
 import {changeRecord} from "../../redux/records/recordsActions";
 
@@ -32,7 +32,7 @@ class ExtendedRecord extends React.Component<ILocProps, ILocState>{
     }
 
     componentDidMount() {
-        this.dateInputRef.current.valueAsNumber = this.record.dateMills;
+        this.dateInputRef.current.value = this.record.date;
     }
 
     toggleEditMode() {
@@ -46,7 +46,7 @@ class ExtendedRecord extends React.Component<ILocProps, ILocState>{
 
     componentDidUpdate() {
         if (this.needToSaveRecord) {
-            this.props.saveRecord(this.record);
+            this.props.saveRecord({...this.record});
             this.needToSaveRecord = false;
         }
     }
@@ -56,10 +56,9 @@ class ExtendedRecord extends React.Component<ILocProps, ILocState>{
     }
 
     dateInputHandler(event: React.FormEvent<HTMLInputElement>) {
-        const value = event.currentTarget.valueAsNumber;
-        if (!areDaysEqual(this.record, {...this.record, dateMills:value})) {
-            debugger;
-            this.record.dateMills = value;
+        const value = event.currentTarget.value;
+        if (this.record.date !== value) {
+            this.record.date = value;
         }
     }
 

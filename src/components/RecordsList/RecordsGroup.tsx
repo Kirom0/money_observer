@@ -42,17 +42,9 @@ class RecordsGroup extends React.PureComponent<RecordsGroupProps, RecordsGroupSt
     turnEditOrderModeOff() {
         const newIndex = this.orderChanger.finish() + this.props.offset;
         const targetIndex = this.state.editingTarget;
-        {
-            const {records, changeOrder} = this.props;
-
-            for (let i = targetIndex + 1; i <= newIndex; i++) {
-                changeOrder(records[i], records[i - 1].dateMills);
-            }
-            for (let i = targetIndex - 1; i >= newIndex; i--) {
-                changeOrder(records[i], records[i + 1].dateMills);
-            }
-            changeOrder(records[targetIndex], records[newIndex].dateMills);
-        }
+        this.props.changeOrder(
+            this.props.records[targetIndex],
+            newIndex - this.props.offset + 1);
 
         this.setState({editOrderMode: false});
         this.context.modal.turnOff();
@@ -94,7 +86,7 @@ class RecordsGroup extends React.PureComponent<RecordsGroupProps, RecordsGroupSt
                 onTouchEnd={!editOrderMode ? null : this.turnEditOrderModeOff}
             >
                 <div className="date">
-                    <span>{getDate(this.props.records[offset].dateMills)}</span>
+                    <span>{getDate(this.props.records[offset].date)}</span>
                 </div>
                 <div
                     className="items"
@@ -107,14 +99,14 @@ class RecordsGroup extends React.PureComponent<RecordsGroupProps, RecordsGroupSt
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        changeOrder : (record, order) => dispatch(changeRecord({...record, dateMills: order})),
+        changeOrder : (record, order) => dispatch(changeRecord({...record, order: order})),
     }
 }
 
 export default connect(null, mapDispatchToProps)(RecordsGroup);
 
-function getDate(mills: number): string {
-    return (new Date(mills)).toLocaleDateString('ru-RU',
+function getDate(dateString: string): string {
+    return (new Date(dateString)).toLocaleDateString('ru-RU',
         {
             day: 'numeric',
             month: 'long',

@@ -1,5 +1,5 @@
 import React from 'react';
-import {areDaysEqual, IRecord} from "../../interfaces/IRecord";
+import {IRecord} from "../../interfaces/IRecord";
 import RecordsGroup from "./RecordsGroup";
 import {AppContext} from "../AppContext";
 import {connect} from "react-redux";
@@ -21,7 +21,7 @@ class RecordList extends React.PureComponent<RecordListProps, any> {
         {
             let d = 0;
             for (let i = 1; i < records.length; i++) {
-                if (areDaysEqual(records[i], records[i - 1])) {
+                if (records[i].date === records[i - 1].date) {
                     groups[d][1] += 1;
                 } else {
                     d += 1;
