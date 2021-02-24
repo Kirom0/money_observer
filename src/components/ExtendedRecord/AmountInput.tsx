@@ -16,13 +16,8 @@ export const AmountInput : React.FC<AmountInputProps> = (props) => {
     const inputHandler : (event : React.FormEvent<HTMLInputElement>) => void = (event) => {
         const amount : number | undefined = normalize(event.currentTarget.value);
         if (amount !== undefined) {
-            console.log('inputHandler save');
             setState({amount, warning: ''});
         }
-    }
-
-    const focusHandler : (event : React.FocusEvent<HTMLInputElement>) => void = (event) => {
-        console.log('focus');
     }
 
     const blurHandler : (event : React.FocusEvent<HTMLInputElement>) => void = (event) => {
@@ -36,17 +31,14 @@ export const AmountInput : React.FC<AmountInputProps> = (props) => {
             return;
         }
         setState({amount, warning: ''});
-        console.log('saveAmount');
         props.saveAmount(amount);
     }
-    console.log('AmountInput render', state);
     return (
         <div className={amountClassNames(state.amount)}>
             <input
                 type="text"
                 defaultValue={state.amount}
                 onInput={inputHandler}
-                onFocus={focusHandler}
                 onBlur={blurHandler}
                 disabled={props.disabled}
             />

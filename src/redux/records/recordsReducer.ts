@@ -1,8 +1,8 @@
-import {ActTypes} from "./action.types";
-import {IAppState} from "../interfaces/IAppState";
-import {compareIRecords} from "../interfaces/IRecord";
+import {ActTypes} from "../action.types";
+import {IAppRecordsState, IAppState} from "../../interfaces/IAppState";
+import {compareIRecords} from "../../interfaces/IRecord";
 
-const initalState : IAppState = {
+const initalState : IAppRecordsState = {
     records: [
         {
             id: 1,
@@ -15,7 +15,7 @@ const initalState : IAppState = {
             amount: -432.12,
             title: 'Поход в магазин',
             description: 'Куриное филе, хлеб, молоко и яица',
-            dateMills: 210000000000,
+            dateMills: 210000000001,
         },
         {
             id: 3,
@@ -41,17 +41,26 @@ const initalState : IAppState = {
 }
 
 export const recordsReducer = (state = initalState, action) => {
-    debugger;
     switch (action.type) {
         case ActTypes.RECORD_CHANGE:
+            const records = [];
+            let target;
+            for (let i = 0; i < state.records.length; i++) {
+                if (state.records[i].id === action.record.id) {
+                    target = i;
+                }
+                records.push(state.records[i]);
+            }
+            debugger;
+            const needSort = records[target].dateMills !== action.record.dateMills;
+            records[target] = action.record;
             const _state = {
                 ...state,
-                records: [
-                    ...state.records.filter(rec => rec.id !== action.record.id),
-                    action.record,
-                ]
+                records,
             };
-            _state.records.sort(compareIRecords);
+            if (needSort) {
+                _state.records.sort(compareIRecords);
+            }
             return _state;
         default: return state;
     }

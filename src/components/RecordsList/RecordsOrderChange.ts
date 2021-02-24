@@ -117,7 +117,6 @@ export function getRecordsOrderChanger() : IRecordsOrderChanger {
                         l = m;
                     }
                 }
-                console.log('in setNewY', y, l);
                 replacer(l);
                 setY(y);
             } else {
@@ -132,7 +131,6 @@ export function getRecordsOrderChanger() : IRecordsOrderChanger {
                         l = m;
                     }
                 }
-                console.log('in setNewY', y, r);
                 replacer(r);
                 setY(y);
             }

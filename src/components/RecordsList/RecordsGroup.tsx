@@ -3,12 +3,14 @@ import {IRecord} from "../../interfaces/IRecord";
 import {Record} from "./Record";
 import {AppContext} from "../AppContext";
 import {getRecordsOrderChanger, IRecordsOrderChanger} from "./RecordsOrderChange";
+import {connect} from "react-redux";
+import {changeRecord} from "../../redux/records/recordsActions";
 
 interface RecordsGroupProps {
     records : IRecord[],
     offset: number,
     count: number,
-    modalCall: (index: number) => void,
+    changeOrder: (record : IRecord, order : number) => void,
 }
 
 interface RecordsGroupState {
@@ -16,7 +18,7 @@ interface RecordsGroupState {
     editingTarget? : number,
 }
 
-export class RecordsGroup extends React.PureComponent<RecordsGroupProps, RecordsGroupState> {
+class RecordsGroup extends React.PureComponent<RecordsGroupProps, RecordsGroupState> {
     static contextType = AppContext;
     private recordsRef: any[];
     private orderChanger: IRecordsOrderChanger;
@@ -41,42 +43,30 @@ export class RecordsGroup extends React.PureComponent<RecordsGroupProps, Records
         const newIndex = this.orderChanger.finish() + this.props.offset;
         const targetIndex = this.state.editingTarget;
         {
-            const data = this.context.data;
-            const beginTime = data.records[this.props.offset].dateMills;
-            data.records = [...data.records];
-            const targetRecord = data.records[targetIndex];
-            if (targetIndex < newIndex) {
-                for (let i = targetIndex; i < newIndex; i++) {
-                    data.records[i] = data.records[i + 1];
-                }
-            } else {
-                for (let i = targetIndex; i > newIndex; i--) {
-                    data.records[i] = data.records[i - 1];
-                }
+            const {records, changeOrder} = this.props;
+
+            for (let i = targetIndex + 1; i <= newIndex; i++) {
+                changeOrder(records[i], records[i - 1].dateMills);
             }
-            data.records[newIndex] = targetRecord;
-            for (let i = this.props.offset; i < this.props.offset + this.props.count; i++) {
-                data.records[i].dateMills = beginTime + i - this.props.offset;
+            for (let i = targetIndex - 1; i >= newIndex; i--) {
+                changeOrder(records[i], records[i + 1].dateMills);
             }
+            changeOrder(records[targetIndex], records[newIndex].dateMills);
         }
-        console.log(newIndex);
 
         this.setState({editOrderMode: false});
         this.context.modal.turnOff();
     }
 
     mouseMoveHandler(event : React.MouseEvent<HTMLDivElement, MouseEvent>) {
-        //console.log('mouseMove client', event.clientX, event.clientY, 'page:', event.pageX, event.pageY, 'screen:', event.screenX, event.screenY);
         this.orderChanger.setNewY(event.clientY);
     }
 
     touchMoveHandler(event) {
-        //console.log(event.touches[0].clientY);
         this.orderChanger.setNewY(event.touches[0].clientY);
     }
 
     render() {
-        //debugger;
         const {records, offset, count} = this.props;
         const Records : JSX.Element[] = [];
         while (count > this.recordsRef.length) {
@@ -114,6 +104,14 @@ export class RecordsGroup extends React.PureComponent<RecordsGroupProps, Records
         );
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeOrder : (record, order) => dispatch(changeRecord({...record, dateMills: order})),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(RecordsGroup);
 
 function getDate(mills: number): string {
     return (new Date(mills)).toLocaleDateString('ru-RU',

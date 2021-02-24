@@ -1,18 +1,18 @@
 import React from 'react';
 import {areDaysEqual, IRecord} from "../../interfaces/IRecord";
-import {RecordsGroup} from "./RecordsGroup";
+import RecordsGroup from "./RecordsGroup";
 import {AppContext} from "../AppContext";
+import {connect} from "react-redux";
+import {IAppState} from "../../interfaces/IAppState";
 
 interface RecordListProps {
     records: IRecord[],
-    modalCall: (index: number) => void,
 }
 
 class RecordList extends React.PureComponent<RecordListProps, any> {
     static contextType = AppContext;
     constructor(props) {
         super(props);
-        //debugger;
     }
 
     render() {
@@ -37,7 +37,6 @@ class RecordList extends React.PureComponent<RecordListProps, any> {
                             records={records}
                             offset={group[0]}
                             count={group[1]}
-                            modalCall={this.props.modalCall}
                             key={`${group[0]}-${group[1]}`}
                         />)
                 }
@@ -46,4 +45,11 @@ class RecordList extends React.PureComponent<RecordListProps, any> {
     }
 }
 
-export default RecordList;
+const mapStateToProps = ({records} : IAppState) => {
+    return {
+        records: records.records,
+    };
+}
+
+export default connect(mapStateToProps, null)(RecordList);
+

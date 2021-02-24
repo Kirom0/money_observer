@@ -1,5 +1,5 @@
 import React from 'react';
-import {compareIRecords, IRecord} from "../../interfaces/IRecord";
+import {IRecord} from "../../interfaces/IRecord";
 import ExtendedRecord from "../ExtendedRecord/ExtendedRecord";
 import {AppContext} from "../AppContext";
 
@@ -29,21 +29,12 @@ export class Record extends React.PureComponent<RecordProps> {
 
     render() {
         const record = this.props.record;
-        const onClick = //this.props.onClick;
+        const onClick =
             (event) => {
                 event.stopPropagation();
                 this.context.modal.turnOn((
                     <ExtendedRecord
                         record={record}
-                        saveRecord={(newRecord)=>{
-                            const data = this.context.data;
-                            data.records = [...data.records];
-                            data.records[this.props.index] = newRecord;
-                            data.records.sort(compareIRecords);
-                        }}
-                        closeCB={() => {
-                            this.context.modal.turnOff();
-                        }}
                     />
                 ));
             }

@@ -1,11 +1,12 @@
 import React from 'react';
 import {AmountInput} from "./AmountInput";
 import {areDaysEqual, IRecord} from "../../interfaces/IRecord";
+import {connect} from "react-redux";
+import {changeRecord} from "../../redux/records/recordsActions";
 
 interface ILocProps {
     record: IRecord,
-    saveRecord: (record: IRecord) => void,
-    closeCB: () => void,
+    saveRecord: (record : IRecord) => void,
 }
 
 interface ILocState {
@@ -19,7 +20,8 @@ class ExtendedRecord extends React.Component<ILocProps, ILocState>{
 
     constructor(props: ILocProps | Readonly<ILocProps>) {
         super(props);
-        this.record = JSON.parse(JSON.stringify(props.record));
+        //this.record = JSON.parse(JSON.stringify(props.record));
+        this.record = {...this.props.record};
         this.state = {editMode: false};
         this.dateInputRef = React.createRef<HTMLInputElement>();
         this.needToSaveRecord = false;
@@ -44,7 +46,6 @@ class ExtendedRecord extends React.Component<ILocProps, ILocState>{
 
     componentDidUpdate() {
         if (this.needToSaveRecord) {
-            console.log('saveRecord');
             this.props.saveRecord(this.record);
             this.needToSaveRecord = false;
         }
@@ -55,9 +56,9 @@ class ExtendedRecord extends React.Component<ILocProps, ILocState>{
     }
 
     dateInputHandler(event: React.FormEvent<HTMLInputElement>) {
-        console.log(event.currentTarget);
         const value = event.currentTarget.valueAsNumber;
         if (!areDaysEqual(this.record, {...this.record, dateMills:value})) {
+            debugger;
             this.record.dateMills = value;
         }
     }
@@ -127,4 +128,10 @@ function activeMaterialIconsClasses(active : boolean) : string {
     return ['material-icons', active ? 'active' : ''].join(' ');
 }
 
-export default ExtendedRecord;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        saveRecord: (record : IRecord) => dispatch(changeRecord(record)),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ExtendedRecord);
