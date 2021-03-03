@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "noImplicitAny": false,
-    "module": "es6",
-    "target": "es5",
-    "jsx": "react",
-    "allowJs": true,
-    "checkJs": true,
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "downlevelIteration": true,
-    "sourceMap": true
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true
   }
 }

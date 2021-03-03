@@ -1,0 +1,7 @@
+export enum ActTypes {
+    RECORDS_CHANGE,
+    RECORDS_GET,
+    RECORDS_NEW,
+    RECORDS_SHOW_LOADER,
+    RECORDS_HIDE_LOADER,
+}

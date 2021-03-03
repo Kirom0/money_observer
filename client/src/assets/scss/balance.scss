@@ -1,0 +1,49 @@
+@import "variables";
+
+$height: 3rem;
+
+
+.balance {
+  background: linear-gradient(45deg, #4bbd5c, #36ff50);
+  height: $height;
+  @media (min-width: $breakpoint-1 + 1) {
+    height: $height + 0.5rem;
+  }
+  margin-top: -0.3em;
+  color: white;
+
+  &__container {
+    position: relative;
+    margin: 0 auto;
+    height: 100%;
+    max-width: 420px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    @media (min-width: $breakpoint-1 + 1) {
+      width: 420px;
+      font-size: 28px;
+    }
+    &_btn {
+      position: absolute;
+      width: 50%;
+      right: 0;
+      display: flex;
+      justify-content: flex-end;
+      @media (min-width: $breakpoint-1 + 1) {
+        justify-content: center;
+      }
+    }
+    span {
+      line-height: $height;
+      @media (min-width: $breakpoint-1 + 1) {
+        line-height: $height + 0.5rem;
+      }
+      &.btn {
+        font-size: 1.8em;
+        cursor: pointer;
+      }
+    }
+  }
+}

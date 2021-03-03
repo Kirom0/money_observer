@@ -1,0 +1,49 @@
+@import "variables";
+
+.sign-in {
+  margin: 0 auto;
+
+
+  max-width: 420px;
+  width: 90%;
+  font-size: 14px;
+
+  @media (min-width: $breakpoint-1 + 1) {
+    width: 420px;
+    font-size: 18px;
+  }
+
+  &__paragraph {
+    margin: 0.5em 0.5em;
+  }
+
+  &__button {
+    display: block;
+    text-decoration: none;
+    font-size: 1.4em;
+    border: 1px solid #2787f5;
+    border-radius: 0.3em;
+    background: #2787f5;
+    padding: 0 1em;
+    cursor: pointer;
+
+    &_content {
+      display: flex;
+      color: white;
+
+      span {
+        text-align: center;
+        vertical-align: center;
+        line-height: 2.5em;
+        flex-grow: 1;
+      }
+      img {
+        flex-grow: 0;
+        width: 2.5em;
+        height: 2.5em;
+        color: white;
+      }
+    }
+  }
+}
+
