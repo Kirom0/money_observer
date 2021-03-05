@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import fetch from 'node-fetch';
+import { VK_CLIENT_ID, VK_CLIENT_SECRET, VK_REDIRECT_URI } from '../config';
 
 @Injectable()
 export class VkService {
-  private static client_id = 7778112;
-  private static client_secret = '4miLx4gZ8txBgUkWwEMy';
-  private static redirect_uri = 'http://localhost:3000/';
+  private static client_id = VK_CLIENT_ID;
+  private static client_secret = VK_CLIENT_SECRET;
+  private static redirect_uri = VK_REDIRECT_URI;
 
   private static combine(method, params) {
     return `${method}?${new URLSearchParams(params).toString()}`;

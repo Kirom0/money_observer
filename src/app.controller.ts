@@ -4,6 +4,7 @@ import { AuthDto } from './dto/auth.dto';
 import { VkService } from './vk/vk.service';
 import { UserDto } from './dto/user.dto';
 import { RecordDto } from './dto/record.dto';
+import { VK_CLIENT_ID, VK_REDIRECT_URI } from './config';
 
 interface AuthResponse {
   user_id: number;
@@ -11,6 +12,8 @@ interface AuthResponse {
   name: string;
   error: string;
   balance: number;
+  success: boolean;
+  vk_oauth_uri: string;
 }
 
 @Controller('api')
@@ -43,13 +46,30 @@ export class AppController {
       name: '',
       token: '',
       balance: 0,
+      success: false,
+      vk_oauth_uri:
+        'https://oauth.vk.com/authorize?' +
+        new URLSearchParams({
+          client_id: VK_CLIENT_ID,
+          redirect_uri: VK_REDIRECT_URI,
+          scope: '65536',
+          display: 'popup',
+          response_type: 'code',
+        }).toString(),
     };
     try {
       const userDto: UserDto = await this.appService.getAuth(authDto.token);
       if (userDto) {
         const { user_id, token, access_token, balance } = userDto;
         const name = await this.vkService.getUsername(user_id, access_token);
-        return { ...initialAnswer, user_id, token, name, balance };
+        return {
+          ...initialAnswer,
+          user_id,
+          token,
+          name,
+          balance,
+          success: true,
+        };
       }
       const oauthRes = await this.vkService.oauth(authDto.token);
       if (oauthRes.error) {
@@ -66,7 +86,7 @@ export class AppController {
       console.log(e.message);
       return {
         ...initialAnswer,
-        error: 'Авторизация не удалась. Попробуйте позже.',
+        error: 'Авторизация не удалась. Попробуйте снова.',
       };
     }
   }

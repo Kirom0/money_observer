@@ -7,7 +7,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 
-console.log(`Fuck u bithces`, isDev);
+console.log('Life is opportunities', isDev);
 
 module.exports = {
     entry: './index.tsx',

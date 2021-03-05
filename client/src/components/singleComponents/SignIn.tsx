@@ -3,6 +3,7 @@ import parseUrl from 'parse-url';
 import Loader from './Loader';
 import { api } from '../../core/api';
 import { setToken } from '../../core/authentication';
+import { AppContext } from '../AppContext';
 
 interface SignInState {
   loading?: boolean,
@@ -11,7 +12,8 @@ interface SignInState {
 }
 
 export class SignIn extends React.Component<any, SignInState>{
-  private code: string | undefined;
+  static contextType = AppContext;
+  private readonly code: string | undefined;
   constructor(props) {
     super(props);
     this.code = parseUrl(document.location.href).query.code;
@@ -50,15 +52,19 @@ export class SignIn extends React.Component<any, SignInState>{
         </p>
         {
           this.state.authed || (
-            <a
-              className="sign-in__button"
-              href="https://oauth.vk.com/authorize?client_id=7778112&scope=65536&display=popup&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F"
-            >
-              <div className="sign-in__button_content">
-                <span>Войти с помощью</span>
-                <img src="img/vk-logo.svg"/>
-              </div>
-            </a>
+            <AppContext.Consumer>
+              {(value) => (
+                <a
+                  className="sign-in__button"
+                  href={value.authData.vk_oauth_uri}
+                >
+                  <div className="sign-in__button_content">
+                    <span>Войти с помощью</span>
+                    <img src="img/vk-logo.svg"/>
+                  </div>
+                </a>)
+              }
+            </AppContext.Consumer>
           )
         }
       </div>

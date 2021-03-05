@@ -23,7 +23,7 @@ async function start() {
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   ));
 
-  if (authData) {
+  if (authData.success) {
     store.dispatch(balanceGet(authData.balance));
   }
 

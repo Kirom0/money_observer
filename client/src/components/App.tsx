@@ -23,6 +23,7 @@ const AppContextValue = {
     authData: {
         token: '',
         name: '',
+        vk_oauth_uri: '',
     }
 }
 
@@ -30,10 +31,8 @@ class App extends React.Component<{ authData : any }, AppState> {
     private modalRef: React.LegacyRef<HTMLDivElement>;
     constructor(props) {
         super(props);
-        if (this.props.authData) {
-            AppContextValue.authorized = true;
-            AppContextValue.authData = this.props.authData;
-        }
+        AppContextValue.authorized = this.props.authData.success;
+        AppContextValue.authData = this.props.authData;
 
         this.state = {
             modalActive: false,

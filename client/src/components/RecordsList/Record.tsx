@@ -77,7 +77,9 @@ export class Record extends React.PureComponent<RecordProps> {
 
 
 export function formatAmount(amount : number) : string {
-    return (amount >= 0) ? `+${beautyMoneyValue(amount)}₽` : `${beautyMoneyValue(amount)}₽`;
+    return (amount >= 0) ?
+      `+${beautyMoneyValue(amount, true)}₽` :
+      `${beautyMoneyValue(amount, true)}₽`;
 }
 
 export function amountClassNames(amount : number) : string {

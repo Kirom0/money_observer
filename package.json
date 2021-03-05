@@ -31,6 +31,7 @@
     "@nestjs/serve-static": "^2.1.4",
     "concurrently": "^6.0.0",
     "mongoose": "^5.11.18",
+    "node-env-file": "^0.1.8",
     "node-fetch": "^2.6.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

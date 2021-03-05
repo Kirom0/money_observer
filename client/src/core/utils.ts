@@ -27,7 +27,7 @@ export function compareObjects(a : any, b : any) : boolean {
     return true;
 }
 
-export function beautyMoneyValue(balance : number) : string {
+export function beautyMoneyValue(balance : number, tryToHideFrac: boolean = false) : string {
     const minus = (balance < 0) ? '-' : '';
     balance = Math.abs(balance);
     const parts = balance.toFixed(2).split('.');
@@ -39,7 +39,11 @@ export function beautyMoneyValue(balance : number) : string {
         }
         mas[mas.length - 1] += parts[0][i];
     }
-    return minus + (mas.join(' ') + '.' + parts[1]).trim();
+    let lastPart = '';
+    if (!tryToHideFrac || (tryToHideFrac && parts[1] !== '00')) {
+        lastPart += '.' + parts[1];
+    }
+    return minus + (mas.join(' ')).trim() + lastPart;
 }
 
 // Object.is polyfill

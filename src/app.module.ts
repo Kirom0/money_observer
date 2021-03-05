@@ -7,11 +7,13 @@ import { VkService } from './vk/vk.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { User, UserSchema } from './users/schemas/user.schema';
 import { Record, RecordSchema } from './records/schemas/record.schema';
+import { MONGODB_CONNECT_URI } from './config';
 
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://kirom:1234qwer@cluster0.4fp4r.azure.mongodb.net/m_observer?retryWrites=true&w=majority',
+      MONGODB_CONNECT_URI,
+      //'mongodb+srv://kirom:1234qwer@cluster0.4fp4r.azure.mongodb.net/m_observer?retryWrites=true&w=majority',
     ),
     MongooseModule.forFeature([
       { name: User.name, schema: UserSchema },
