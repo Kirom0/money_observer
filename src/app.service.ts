@@ -23,6 +23,7 @@ export class AppService {
 
     user.access_token = access_token;
     user.token = token;
+    await this.refreshBalance(user.user_id);
     console.log('db auth: ', user);
     return user.save();
   }

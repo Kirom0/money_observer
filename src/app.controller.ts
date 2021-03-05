@@ -80,8 +80,13 @@ export class AppController {
       const name = await this.vkService.getUsername(user_id, access_token);
       const token = authDto.token;
 
-      await this.appService.auth({ user_id, access_token, token, balance: 0 });
-      return { ...initialAnswer, user_id, token, name };
+      const { balance } = await this.appService.auth({
+        user_id,
+        access_token,
+        token,
+        balance: 0,
+      });
+      return { ...initialAnswer, user_id, token, name, success: true, balance };
     } catch (e) {
       console.log(e.message);
       return {

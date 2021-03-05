@@ -37,7 +37,7 @@ export class VkService {
       access_token,
       v: '5.130',
     });
-    const { first_name, last_name } = vkResponse.response[0];
-    return first_name + ' ' + last_name;
+    const { first_name } = vkResponse.response[0];
+    return first_name;
   }
 }

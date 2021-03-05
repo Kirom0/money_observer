@@ -1,16 +1,18 @@
 import React from 'react';
 import RecordList from "./RecordsList/RecordList";
 import { AppContext } from './AppContext';
-import { SignIn } from './singleComponents/SignIn';
+import Authorization from './singleComponents/Authorization';
 import Balance from './singleComponents/Balance';
 import { AddRecordBtn } from './singleComponents/AddRecordBtn';
 import ExtendedRecord from './ExtendedRecord/ExtendedRecord';
 import { emptyRecord } from '../interfaces/IRecord';
+import WelcomeScreen from './singleComponents/WelcomeScreen';
 
 interface AppState {
     modalActive?: boolean,
     authorized?: boolean,
     modalElement?: JSX.Element,
+    showWelcomeScreen?: boolean,
 }
 
 const AppContextValue = {
@@ -19,27 +21,24 @@ const AppContextValue = {
         turnOn: undefined,
         turnOff: undefined,
     },
-    authorized: false,
-    authData: {
+    auth: {
         token: '',
         name: '',
         vk_oauth_uri: '',
+        success: false,
     }
 }
 
-class App extends React.Component<{ authData : any }, AppState> {
-    private modalRef: React.LegacyRef<HTMLDivElement>;
+class App extends React.Component<any, AppState> {
     constructor(props) {
         super(props);
-        AppContextValue.authorized = this.props.authData.success;
-        AppContextValue.authData = this.props.authData;
 
         this.state = {
             modalActive: false,
-            authorized: AppContextValue.authorized,
+            authorized: false,
+            showWelcomeScreen: false,
         } as AppState;
 
-        this.modalRef = React.createRef();
         this.turnOffModal = this.turnOffModal.bind(this);
 
         AppContextValue.modal.turnOn = (element : JSX.Element) => {
@@ -60,11 +59,43 @@ class App extends React.Component<{ authData : any }, AppState> {
         const state = this.state;
         AppContextValue.modal.active = this.state.modalActive;
         console.log('App render');
+        const content = () => {
+            if (!state.authorized) {
+                return (
+                  <Authorization sendAuth={(auth, showWelcomeScreen = false)=>{
+                      if (auth.success) {
+                          AppContextValue.auth = auth;
+                          if (showWelcomeScreen) {
+                              this.setState({ showWelcomeScreen });
+                              setTimeout(()=>{
+                                  this.setState({authorized: true });
+                              }, 1000);
+                              return;
+                          }
+                          this.setState({authorized: true, showWelcomeScreen });
+                      }
+                  }}/>
+                )
+            }
+            return (
+              <>
+                  <Balance>
+                      <AddRecordBtn onClick={()=>{
+                          AppContextValue.modal.turnOn((
+                            <ExtendedRecord
+                              record={emptyRecord()}
+                            />
+                          ));
+                      }}/>
+                  </Balance>
+                  <RecordList/>
+              </>
+            );
+        }
         return (
             <>
                 <div
                     className={['modal', !state.modalActive ? 'off' : ''].join(' ')}
-                    ref={this.modalRef}
                     onClick={()=>{
                         if (state.modalElement) {
                             this.turnOffModal();
@@ -74,23 +105,17 @@ class App extends React.Component<{ authData : any }, AppState> {
                 <div className="header"><span>Money Observer</span></div>
                 <AppContext.Provider value={AppContextValue}>
                     {
-                        !state.authorized ? (<SignIn/>) : (
-                          <>
-                              <Balance>
-                                  <AddRecordBtn onClick={()=>{
-                                      AppContextValue.modal.turnOn((
-                                        <ExtendedRecord
-                                          record={emptyRecord()}
-                                        />
-                                      ));
-                                  }}/>
-                              </Balance>
-                              <RecordList/>
-                          </>
-                          )
+                        content()
                     }
                     {
                         state.modalActive && state.modalElement
+                    }
+                    {
+                        state.showWelcomeScreen &&
+                        (<WelcomeScreen
+                          name={AppContextValue.auth.name}
+                          close={()=>{this.setState({showWelcomeScreen: false})}}
+                        />)
                     }
                 </AppContext.Provider>
             </>

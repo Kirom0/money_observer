@@ -30,7 +30,7 @@ class RecordList extends React.PureComponent<RecordListProps, any> {
         const {records} = this.props;
         if (records.length === 0) {
             return (
-              <div className='item-list'>
+              <div className='item-list' style={{marginTop: '1em'}}>
                   У вас пока нет ни одной записи.
               </div>
             )

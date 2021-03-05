@@ -1,0 +1,124 @@
+@import "variables";
+
+$background-duration: 1s;
+$duration: 1.5s;
+$rollback-after-duration: 4s;
+
+$b-green: #4bbd5c;
+$w-green: #36ff50;
+
+.welcome-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  padding: 1vw;
+
+  font-size: 120vw;
+  @media (min-width: $breakpoint-1 + 1) {
+    font-size: 100vw;
+  }
+  @media (min-width: $breakpoint-2 + 1) {
+    font-size: 80vw;
+  }
+  color: white;
+  font-weight: bold;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //background: linear-gradient(45deg, #4bbd5c, #36ff50);
+  background: linear-gradient(45deg, $b-green, $w-green);
+  //background: red;
+
+  animation: opacity-for-lines $background-duration linear 1 normal running 0s forwards, background $duration*2 linear 1 normal running $background-duration forwards, opacity-for-lines $background-duration linear 1 reverse running $rollback-after-duration forwards;
+  &_line {
+    margin: 0.4em 0;
+    opacity: 0;
+    font-size: 10%;
+
+    &:nth-child(1) {
+      text-align: left;
+      animation: first-line $duration linear 1 normal running $background-duration forwards, opacity-for-lines $duration/2 1 normal running $background-duration forwards;
+    }
+    &:nth-child(2) {
+      text-align: right;
+      animation: second-line $duration linear 1 normal running $background-duration forwards, opacity-for-lines $duration/2 1 normal running $background-duration forwards;
+    }
+    &:nth-child(3) {
+      text-align: center;
+      animation: third-line $duration linear 1 normal running $background-duration forwards, opacity-for-lines $duration/2 1 normal running $background-duration forwards;
+    }
+  }
+}
+
+@keyframes background {
+  0% {
+    background: linear-gradient(45deg, $b-green, $w-green);
+  }
+  20% {
+    background: linear-gradient(40deg, $b-green, $w-green);
+  }
+  30% {
+    background: linear-gradient(35deg, $b-green, $w-green);
+  }
+  40% {
+    background: linear-gradient(30deg, $b-green, $w-green);
+  }
+  50% {
+    background: linear-gradient(25deg, $b-green, $w-green);
+  }
+  60% {
+    background: linear-gradient(20deg, $b-green, $w-green);
+  }
+  70% {
+    background: linear-gradient(15deg, $b-green, $w-green);
+  }
+  80% {
+    background: linear-gradient(10deg, $b-green, $w-green);
+  }
+  90% {
+    background: linear-gradient(5deg, $b-green, $w-green);
+  }
+  100% {
+    background: linear-gradient(0deg, $b-green, $w-green);
+  }
+}
+
+@keyframes first-line {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: 15%;
+  }
+}
+
+@keyframes second-line {
+  0% {
+    margin-right: 0;
+  }
+  100% {
+    margin-right: 15%;
+  }
+}
+
+@keyframes third-line {
+  0% {
+    margin-left: 50%;
+  }
+  100% {
+    margin-left: 0;
+  }
+}
+
+@keyframes opacity-for-lines {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

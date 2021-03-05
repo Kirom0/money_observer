@@ -574,7 +574,7 @@ template {
 }
 .item-list .group .items .item .content {
   padding: 0 12px;
-  width: 100%;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   margin: auto 0;
@@ -717,7 +717,6 @@ template {
   height: 2.5em;
   color: white;
 }
-
 .lds-ripple {
   display: inline-block;
   position: relative;
@@ -782,7 +781,7 @@ template {
 }
 .balance__container_btn {
   position: absolute;
-  width: 50%;
+  width: 33.33%;
   right: 0;
   display: flex;
   justify-content: flex-end;
@@ -802,8 +801,118 @@ template {
 }
 .balance__container span.btn {
   font-size: 1.8em;
+  cursor: pointer;
 }
 
+.welcome-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  padding: 1vw;
+  font-size: 120vw;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(45deg, #4bbd5c, #36ff50);
+  animation: opacity-for-lines 1s linear 1 normal running 0s forwards, background 3s linear 1 normal running 1s forwards, opacity-for-lines 1s linear 1 reverse running 4s forwards;
+}
+@media (min-width: 481px) {
+  .welcome-screen {
+    font-size: 100vw;
+  }
+}
+@media (min-width: 769px) {
+  .welcome-screen {
+    font-size: 80vw;
+  }
+}
+.welcome-screen_line {
+  margin: 0.4em 0;
+  opacity: 0;
+  font-size: 10%;
+}
+.welcome-screen_line:nth-child(1) {
+  text-align: left;
+  animation: first-line 1.5s linear 1 normal running 1s forwards, opacity-for-lines 0.75s 1 normal running 1s forwards;
+}
+.welcome-screen_line:nth-child(2) {
+  text-align: right;
+  animation: second-line 1.5s linear 1 normal running 1s forwards, opacity-for-lines 0.75s 1 normal running 1s forwards;
+}
+.welcome-screen_line:nth-child(3) {
+  text-align: center;
+  animation: third-line 1.5s linear 1 normal running 1s forwards, opacity-for-lines 0.75s 1 normal running 1s forwards;
+}
+
+@keyframes background {
+  0% {
+    background: linear-gradient(45deg, #4bbd5c, #36ff50);
+  }
+  20% {
+    background: linear-gradient(40deg, #4bbd5c, #36ff50);
+  }
+  30% {
+    background: linear-gradient(35deg, #4bbd5c, #36ff50);
+  }
+  40% {
+    background: linear-gradient(30deg, #4bbd5c, #36ff50);
+  }
+  50% {
+    background: linear-gradient(25deg, #4bbd5c, #36ff50);
+  }
+  60% {
+    background: linear-gradient(20deg, #4bbd5c, #36ff50);
+  }
+  70% {
+    background: linear-gradient(15deg, #4bbd5c, #36ff50);
+  }
+  80% {
+    background: linear-gradient(10deg, #4bbd5c, #36ff50);
+  }
+  90% {
+    background: linear-gradient(5deg, #4bbd5c, #36ff50);
+  }
+  100% {
+    background: linear-gradient(0deg, #4bbd5c, #36ff50);
+  }
+}
+@keyframes first-line {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: 15%;
+  }
+}
+@keyframes second-line {
+  0% {
+    margin-right: 0;
+  }
+  100% {
+    margin-right: 15%;
+  }
+}
+@keyframes third-line {
+  0% {
+    margin-left: 50%;
+  }
+  100% {
+    margin-left: 0%;
+  }
+}
+@keyframes opacity-for-lines {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 * {
   margin: 0;
   padding: 0;
