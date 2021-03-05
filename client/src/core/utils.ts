@@ -27,6 +27,21 @@ export function compareObjects(a : any, b : any) : boolean {
     return true;
 }
 
+export function beautyMoneyValue(balance : number) : string {
+    const minus = (balance < 0) ? '-' : '';
+    balance = Math.abs(balance);
+    const parts = balance.toFixed(2).split('.');
+    const len = parts[0].length;
+    const mas = [''];
+    for (let i = 0; i < len; i++) {
+        if ((len - i) % 3 === 0) {
+            mas.push('');
+        }
+        mas[mas.length - 1] += parts[0][i];
+    }
+    return minus + (mas.join(' ') + '.' + parts[1]).trim();
+}
+
 // Object.is polyfill
 if (!Object.is) {
     Object.is = function(x, y) {

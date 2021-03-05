@@ -2,7 +2,7 @@ import React from 'react';
 import RecordList from "./RecordsList/RecordList";
 import { AppContext } from './AppContext';
 import { SignIn } from './singleComponents/SignIn';
-import { Balance } from './singleComponents/Balance';
+import Balance from './singleComponents/Balance';
 import { AddRecordBtn } from './singleComponents/AddRecordBtn';
 import ExtendedRecord from './ExtendedRecord/ExtendedRecord';
 import { emptyRecord } from '../interfaces/IRecord';

@@ -10,6 +10,7 @@ interface AuthResponse {
   token: string;
   name: string;
   error: string;
+  balance: number;
 }
 
 @Controller('api')
@@ -41,13 +42,14 @@ export class AppController {
       error: '',
       name: '',
       token: '',
+      balance: 0,
     };
     try {
       const userDto: UserDto = await this.appService.getAuth(authDto.token);
       if (userDto) {
-        const { user_id, token, access_token } = userDto;
+        const { user_id, token, access_token, balance } = userDto;
         const name = await this.vkService.getUsername(user_id, access_token);
-        return { ...initialAnswer, user_id, token, name };
+        return { ...initialAnswer, user_id, token, name, balance };
       }
       const oauthRes = await this.vkService.oauth(authDto.token);
       if (oauthRes.error) {
@@ -58,7 +60,7 @@ export class AppController {
       const name = await this.vkService.getUsername(user_id, access_token);
       const token = authDto.token;
 
-      await this.appService.auth({ user_id, access_token, token });
+      await this.appService.auth({ user_id, access_token, token, balance: 0 });
       return { ...initialAnswer, user_id, token, name };
     } catch (e) {
       console.log(e.message);

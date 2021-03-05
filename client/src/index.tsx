@@ -8,17 +8,26 @@ import './index.scss';
 import { getAuthentication } from './core/authentication';
 import thunk from 'redux-thunk';
 import { recordsMiddleware } from './redux/records/recordsMiddleware';
+import { balanceGet } from './redux/balance/balanceActions';
+import { balanceMiddleware } from './redux/balance/balanceMiddleware';
 
 async function start() {
   const authData = await getAuthentication();
   const store = createStore(rootReducer, compose(
     applyMiddleware(
       thunk,
-      recordsMiddleware
+      recordsMiddleware,
+      balanceMiddleware,
     ),
     // @ts-ignore
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   ));
+
+  if (authData) {
+    store.dispatch(balanceGet(authData.balance));
+  }
+
+  console.log('auth:', authData)
 
   ReactDOM.render(
     <React.StrictMode>

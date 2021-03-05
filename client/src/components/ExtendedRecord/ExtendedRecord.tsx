@@ -32,7 +32,6 @@ class ExtendedRecord extends React.Component<ILocProps, ILocState>{
     }
 
     componentDidMount() {
-        console.log(this.dateInputRef.current.value, this.record.date);
         this.dateInputRef.current.value = this.record.date;
     }
 

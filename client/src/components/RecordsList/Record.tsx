@@ -2,6 +2,7 @@ import React from 'react';
 import {IRecord} from "../../interfaces/IRecord";
 import ExtendedRecord from "../ExtendedRecord/ExtendedRecord";
 import {AppContext} from "../AppContext";
+import { beautyMoneyValue } from '../../core/utils';
 
 interface RecordProps {
     record: IRecord,
@@ -76,7 +77,7 @@ export class Record extends React.PureComponent<RecordProps> {
 
 
 export function formatAmount(amount : number) : string {
-    return (amount >= 0) ? `+${amount}₽` : `${amount}₽`;
+    return (amount >= 0) ? `+${beautyMoneyValue(amount)}₽` : `${beautyMoneyValue(amount)}₽`;
 }
 
 export function amountClassNames(amount : number) : string {

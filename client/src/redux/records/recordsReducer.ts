@@ -4,6 +4,7 @@ import {compareIRecords, IRecord} from "../../interfaces/IRecord";
 
 const initalState : IAppRecordsState = {
     records: [],
+    MappedRecords: new Map<string, IRecord>(),
     loader: true,
     /*records: [
         {
@@ -62,6 +63,7 @@ export const getRecordsReducer = () => {
         //if 'date' was changed
         if (records[targetIndex].date !== action.record.date) {
             const target = {...action.record};
+            MappedRecords.set(target.id, target);
             target.order = 0;
             let i = targetIndex;
             while (i + 1 < records.length &&
@@ -102,7 +104,9 @@ export const getRecordsReducer = () => {
                 targetIndex -= 1;
             }
         } else {
-            records[targetIndex] = {...action.record};
+            const record = {...action.record};
+            records[targetIndex] = record;
+            MappedRecords.set(record.id, records[targetIndex]);
         }
         return {
             ...state,
@@ -124,9 +128,10 @@ export const getRecordsReducer = () => {
         const records = [...state.records];
         records.push(action.record);
         records.sort(compareIRecords);
+        MappedRecords.set(action.record.id, action.record);
         return {...state, records}
     }
-    return (state = initalState, action) => {
+    return (state = {...initalState, MappedRecords}, action) => {
         switch (action.type) {
             case ActTypes.RECORDS_CHANGE:
                 return records_change(state, action);

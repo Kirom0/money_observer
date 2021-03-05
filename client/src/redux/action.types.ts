@@ -4,4 +4,6 @@ export enum ActTypes {
     RECORDS_NEW,
     RECORDS_SHOW_LOADER,
     RECORDS_HIDE_LOADER,
+    BALANCE_GET,
+    BALANCE_CHANGE,
 }

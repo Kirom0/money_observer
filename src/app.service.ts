@@ -28,9 +28,22 @@ export class AppService {
   }
 
   async getAuth(token: string): Promise<UserDto | null> {
-    const res = await this.userModel.findOne({ token }).exec();
-    console.log('db getAuth: ', res);
+    let res = await this.userModel.findOne({ token }).exec();
+    if (res) {
+      res = await this.refreshBalance(res.user_id);
+    }
     return res;
+  }
+
+  async refreshBalance(user_id) {
+    const userDoc = await this.userModel.findOne({ user_id }).exec();
+    let balance = 0;
+    const records = await this.recordModel.find({ user_id });
+    records.forEach((record) => {
+      balance += record.amount;
+    });
+    userDoc.balance = balance;
+    return userDoc.save();
   }
 
   async recordNew(
