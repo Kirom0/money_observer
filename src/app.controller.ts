@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { AuthDto } from './dto/auth.dto';
 import { VkService } from './vk/vk.service';
@@ -117,5 +125,15 @@ export class AppController {
     delete recordDto.id;
     await this.appService.recordUpdate(id, recordDto);
     return {};
+  }
+
+  @Delete('records/delete')
+  async recordsDelete(@Body() req: { id: string; token: string }) {
+    const auth = await this.appService.getAuth(req.token);
+    if (!auth) {
+      return { error: 'Invalid authorization data' };
+    }
+    const { id } = req;
+    return await this.appService.recordDelete(id);
   }
 }

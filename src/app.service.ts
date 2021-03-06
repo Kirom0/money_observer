@@ -39,7 +39,7 @@ export class AppService {
   async refreshBalance(user_id) {
     const userDoc = await this.userModel.findOne({ user_id }).exec();
     let balance = 0;
-    const records = await this.recordModel.find({ user_id });
+    const records = await this.recordModel.find({ user_id }).exec();
     records.forEach((record) => {
       balance += record.amount;
     });
@@ -54,7 +54,9 @@ export class AppService {
     return new this.recordModel({
       ...recordDto,
       user_id,
-      order: (await this.recordModel.find({ date: recordDto.date })).length + 1,
+      order:
+        (await this.recordModel.find({ date: recordDto.date }).exec()).length +
+        1,
     }).save();
   }
 
@@ -65,7 +67,7 @@ export class AppService {
   ): Promise<RecordDocument[]> {
     const from_d = new Date(from);
     const to_d = new Date(to);
-    const records = await this.recordModel.find({ user_id });
+    const records = await this.recordModel.find({ user_id }).exec();
     const needRecords: RecordDocument[] = [];
     records.forEach((record: RecordDocument) => {
       const _d = new Date(record.date);
@@ -112,6 +114,24 @@ export class AppService {
       doc[key] = changes[key];
     });
     return doc.save();
+  }
+
+  async recordDelete(recordId) {
+    const recordDoc = await this.recordModel.findById(recordId);
+
+    const records = await this.recordModel
+      .find({ date: recordDoc.date })
+      .sort({ order: 'asc' })
+      .exec();
+
+    for (const record of records) {
+      if (record.order > recordDoc.order) {
+        record.order -= 1;
+        await record.save();
+      }
+    }
+
+    return recordDoc.remove();
   }
 
   getHello(): string {

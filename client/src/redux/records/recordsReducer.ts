@@ -131,6 +131,20 @@ export const getRecordsReducer = () => {
         MappedRecords.set(action.record.id, action.record);
         return {...state, records}
     }
+    const records_delete = (state, action) => {
+        const target = action.record;
+        const records = [];
+        for (const record of state.records) {
+            if (record.id !== target.id) {
+                if (record.date === target.date && record.order > target.order) {
+                    record.order -= 1;
+                }
+                records.push(record);
+            }
+        }
+        MappedRecords.delete(target.id);
+        return {...state, records};
+    }
     return (state = {...initalState, MappedRecords}, action) => {
         switch (action.type) {
             case ActTypes.RECORDS_CHANGE:
@@ -139,6 +153,8 @@ export const getRecordsReducer = () => {
                 return records_get(state, action);
             case ActTypes.RECORDS_NEW:
                 return records_new(state, action);
+            case ActTypes.RECORDS_DELETE:
+                return records_delete(state, action);
             case ActTypes.RECORDS_SHOW_LOADER:
                 return {...state, loader: true};
             case ActTypes.RECORDS_HIDE_LOADER:

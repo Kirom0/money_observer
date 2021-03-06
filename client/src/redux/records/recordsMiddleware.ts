@@ -23,6 +23,12 @@ export function recordsMiddleware({dispatch}) {
           });
         }
       }
+      if (action.type === ActTypes.RECORDS_DELETE) {
+        dispatch(async () => {
+          const res = await api.recordsDelete(action.record);
+          console.log('recordsDelete:', res);
+        })
+      }
       return next(action);
     }
   }

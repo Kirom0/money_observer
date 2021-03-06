@@ -2,11 +2,13 @@ import React from 'react';
 import {AmountInput} from "./AmountInput";
 import {IRecord} from "../../interfaces/IRecord";
 import {connect} from "react-redux";
-import {changeRecord} from "../../redux/records/recordsActions";
+import { changeRecord, deleteRecord } from '../../redux/records/recordsActions';
+import { AppContext } from '../AppContext';
 
 interface ILocProps {
     record: IRecord,
     saveRecord: (record : IRecord) => void,
+    deleteRecord: (record : IRecord) => void,
 }
 
 interface ILocState {
@@ -14,21 +16,23 @@ interface ILocState {
 }
 
 class ExtendedRecord extends React.Component<ILocProps, ILocState>{
+    static contextType = AppContext;
     private readonly record: IRecord;
     private readonly dateInputRef: React.RefObject<HTMLInputElement>;
-    private needToSaveRecord: boolean;
+    private readonly isNew: boolean;
 
     constructor(props: ILocProps | Readonly<ILocProps>) {
         super(props);
-        //this.record = JSON.parse(JSON.stringify(props.record));
         this.record = {...this.props.record};
-        this.state = {editMode: false};
+        this.isNew = !this.record.id;
+        this.state = {editMode: this.isNew};
         this.dateInputRef = React.createRef<HTMLInputElement>();
-        this.needToSaveRecord = false;
 
         this.toggleEditMode = this.toggleEditMode.bind(this);
         this.dateInputHandler = this.dateInputHandler.bind(this);
         this.changeEventHandler = this.changeEventHandler.bind(this);
+        this.edit_saveBtnHandler = this.edit_saveBtnHandler.bind(this);
+        this.deleteBtnHandler = this.deleteBtnHandler.bind(this);
     }
 
     componentDidMount() {
@@ -37,19 +41,9 @@ class ExtendedRecord extends React.Component<ILocProps, ILocState>{
 
     toggleEditMode() {
         this.setState((prevState) => {
-            if (prevState.editMode) {
-                this.needToSaveRecord = true;
-            }
             return {editMode: !prevState.editMode};
         })
     };
-
-    componentDidUpdate() {
-        if (this.needToSaveRecord) {
-            this.props.saveRecord({...this.record});
-            this.needToSaveRecord = false;
-        }
-    }
 
     changeEventHandler(propName : string, event: React.FormEvent<HTMLInputElement>) {
         this.record[propName] = event.currentTarget.value;
@@ -60,6 +54,18 @@ class ExtendedRecord extends React.Component<ILocProps, ILocState>{
         if (this.record.date !== value) {
             this.record.date = value;
         }
+    }
+
+    edit_saveBtnHandler() {
+        if (this.state.editMode) {
+            this.props.saveRecord({...this.record});
+        }
+        this.toggleEditMode();
+    }
+
+    deleteBtnHandler() {
+        this.props.deleteRecord(this.record);
+        this.context.modal.turnOff();
     }
 
     render() {
@@ -96,11 +102,18 @@ class ExtendedRecord extends React.Component<ILocProps, ILocState>{
                         </div>
                     </div>
                     <div className="buttons">
-                    <span
-                        className={activeMaterialIconsClasses(this.state.editMode)}
-                        onClick={this.toggleEditMode}
-                    >{this.state.editMode ? 'save' : 'create'}</span>
-                        <span className='material-icons'>delete</span>
+                        <span
+                            className={activeMaterialIconsClasses(this.state.editMode)}
+                            onClick={this.edit_saveBtnHandler}
+                        >{this.state.editMode ? 'save' : 'create'}</span>
+                        {
+                            this.isNew || (
+                              <span
+                                className='material-icons'
+                                onClick={this.deleteBtnHandler}
+                              >delete</span>
+                            )
+                        }
                     </div>
                 </div>
                 <div className="footer">
@@ -130,6 +143,7 @@ function activeMaterialIconsClasses(active : boolean) : string {
 const mapDispatchToProps = (dispatch) => {
     return {
         saveRecord: (record : IRecord) => dispatch(changeRecord(record)),
+        deleteRecord: (record : IRecord) => dispatch(deleteRecord(record)),
     }
 }
 

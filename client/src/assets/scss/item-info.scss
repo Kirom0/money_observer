@@ -56,6 +56,9 @@
           outline: none;
           resize: none;
           overflow: hidden;
+          &:disabled {
+            background: unset;
+          }
         }
       }
     }
@@ -89,7 +92,7 @@
       margin: auto 0;
     }
     .date input {
-      color: #999999;
+      color: #444;
       border: none;
       outline: none ;
     }

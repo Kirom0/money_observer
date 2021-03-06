@@ -17,6 +17,13 @@ export const newRecord : (record: IRecord) => IAction = (record) => {
     }
 }
 
+export const deleteRecord : (record: IRecord) => IAction = (record) => {
+    return {
+        type: ActTypes.RECORDS_DELETE,
+        record
+    }
+}
+
 export const getRecords = (from : string, to : string) => {
     return async (dispatch) => {
         dispatch(showLoader());

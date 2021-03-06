@@ -37,6 +37,14 @@ export const api = {
         '/api/records/new',
         {..._FrTBr(record), token: getToken()},
       ).then((res) => res.json()));
+  },
+  recordsDelete: async (record : IRecord) => {
+    return _BrTFr(await
+      POSTRequest(
+        '/api/records/delete',
+        {..._FrTBr(record), token: getToken()},
+        'DELETE'
+      ).then((res) => res.json()));
   }
 }
 
