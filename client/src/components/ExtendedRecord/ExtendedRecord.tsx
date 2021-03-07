@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import { changeRecord, deleteRecord } from '../../redux/records/recordsActions';
 import { AppContext } from '../AppContext';
 import { IconSelection } from '../singleComponents/IconSelection';
+import { Icon } from './Icon';
 
 interface ILocProps {
     record: IRecord,
@@ -14,7 +15,6 @@ interface ILocProps {
 
 interface ILocState {
     editMode: boolean,
-    icon: string,
 }
 
 class ExtendedRecord extends React.Component<ILocProps, ILocState>{
@@ -27,7 +27,7 @@ class ExtendedRecord extends React.Component<ILocProps, ILocState>{
         super(props);
         this.record = {...this.props.record};
         this.isNew = !this.record.id;
-        this.state = {editMode: this.isNew, icon: 'shopping-basket'};
+        this.state = {editMode: this.isNew};
         this.dateInputRef = React.createRef<HTMLInputElement>();
 
         this.toggleEditMode = this.toggleEditMode.bind(this);
@@ -77,22 +77,13 @@ class ExtendedRecord extends React.Component<ILocProps, ILocState>{
                     <div className="content">
                         <div className="logo_and_title">
                             <div className="logo">
-                                <span
-                                  className="material-icons"
-                                  onClick={()=>{
-                                      if (this.state.editMode) {
-                                          this.context.modal.turnOn(
-                                            <IconSelection
-                                              returnSelection={(value) => {
-                                                  this.setState({ icon: value })
-                                              }}
-                                              selected={this.state.icon}
-                                            />);
-                                      }
-                                  }}
-                                >change_circle</span>
-                                <img src={this.context.icons[this.state.icon].src}/>
-
+                                <Icon
+                                    active={this.state.editMode}
+                                    name={this.record.icon}
+                                    returnValue={(value)=>{
+                                        this.record.icon = value;
+                                    }}
+                                />
                             </div>
                             <div className="title">
                                 <input

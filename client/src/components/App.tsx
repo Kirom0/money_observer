@@ -44,7 +44,6 @@ class App extends React.Component<any, AppState> {
         AppContextValue.modal.turnOn = (element : JSX.Element) => {
             if (element) {
                 this.setState((prevState) => {
-                  debugger;
                   return {modalElements: [...prevState.modalElements, element]};
                 });
             } else {

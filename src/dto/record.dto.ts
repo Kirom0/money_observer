@@ -4,6 +4,7 @@ export class RecordDto {
   readonly amount: number;
   readonly date: string;
   readonly order: number;
+  readonly icon: string;
 
   readonly token: string;
 }

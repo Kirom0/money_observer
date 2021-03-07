@@ -22,6 +22,9 @@ export class Record {
 
   @Prop({ required: true })
   user_id: number;
+
+  @Prop({ required: true })
+  icon: string;
 }
 
 export const RecordSchema = SchemaFactory.createForClass(Record);

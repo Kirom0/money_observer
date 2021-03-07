@@ -3,6 +3,7 @@ export interface IRecord {
     amount: number,
     title: string,
     description?: string,
+    icon: string,
     date: string,
     order: number,
 }
@@ -22,6 +23,7 @@ export function emptyRecord() : IRecord {
         id: '',
         amount: 0,
         title: '',
+        icon: 'shopping-basket',
         date: (new Date()).toLocaleDateString('ru-RU',
           {
               day: 'numeric',

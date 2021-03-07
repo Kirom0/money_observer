@@ -22,7 +22,12 @@ export const defaultAppContextValue = {
   icons: Object.fromEntries(icons.map((icon)=>[icon.name, icon])),
   auth: {
     vk_oauth_uri: '',
-  }
+  },
+  modal: {
+    active: false,
+    turnOn: undefined,
+    turnOff: undefined,
+  },
 }
 
 export const AppContext = React.createContext(defaultAppContextValue);

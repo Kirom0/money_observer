@@ -16,6 +16,9 @@ export function balanceMiddleware(store) {
       } else
       if (action.type === ActTypes.RECORDS_NEW) {
         store.dispatch(balanceChange(0, action.record.amount));
+      } else
+      if (action.type === ActTypes.RECORDS_DELETE) {
+        store.dispatch(balanceChange(action.record.amount, 0));
       }
       next(action);
     }

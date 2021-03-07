@@ -54,6 +54,7 @@ function _BrTFr(backendRecord) : IRecord {
     id: backendRecord._id,
     title: backendRecord.title,
     amount: backendRecord.amount,
+    icon: backendRecord.icon,
     date: backendRecord.date.replace(/\./g, '-'),
     order: backendRecord.order,
   }

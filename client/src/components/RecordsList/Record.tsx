@@ -46,7 +46,7 @@ export class Record extends React.PureComponent<RecordProps> {
                 onClick={(!this.props.forbidAnyEvents === true ? true : null) && onClick}
                 ref={this.rootRef}
             >
-                <img className="record-logo" src="img/icons/shopping-basket.svg"/>
+                <img className="record-logo" src={this.context.icons[record.icon].src}/>
                 <div className="content">
                     <span className="title">{record.title}</span>
                     {record.description && (<p className="description">{record.description}</p>)}
