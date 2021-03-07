@@ -10,15 +10,154 @@
 </head>
 <body>
     <div id="app">
-        <div class="modal off"></div>
+        <div class="modal"></div>
+        <div class="modal" style="z-index: 3"></div>
         <div class="header"><span>Money Observer</span></div>
-        <div class="sign-in">
-            <p class="sign-in__paragraph">Вы не авторизированны.</p>
+        <div class="item-list">
+            <div class="group">
+                <div class="date"><span>6 Февраля 2021</span></div>
+                <div class="items">
+                    <div class="item">
+                        <img class="record-logo" src="img/icons/shopping-basket.svg"/>
+                        <div class="content">
+                            <span class="title">Зарплата1</span>
+                        </div>
+                        <div class="side">
+                            <span class="amount coming">+706.15₽</span>
+                            <span class="material-icons">drag_handle</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="record-logo" src="img/icons/shopping-basket.svg"/>
+                        <div class="content">
+                            <span class="title">Зарплата2</span>
+                        </div>
+                        <div class="side">
+                            <span class="amount coming">+706.15₽</span>
+                            <span class="material-icons">drag_handle</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="record-logo" src="img/icons/shopping-basket.svg"/>
+                        <div class="content">
+                            <span class="title">Зарплата3</span>
+                        </div>
+                        <div class="side">
+                            <span class="amount coming">+706.15₽</span>
+                            <span class="material-icons">drag_handle</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="record-logo" src="img/icons/fuel-pump.svg"/>
+                        <div class="content">
+                            <span class="title">Налоги</span>
+                            <p class="description">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, illo, laborum. Atque cupiditate eius enim esse explicabo illum omnis sequi.
+                            </p>
+                        </div>
+                        <div class="side">
+                            <span class="amount cost">-30300.07₽</span>
+                            <span class="material-icons">drag_handle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="group">
+                <div class="date"><span>6 Февраля 2021</span></div>
+                <div class="items">
+                    <div class="item">
+                        <img class="record-logo" src="img/icons/shopping-basket.svg"/>
+                        <div class="content">
+                            <span class="title">Зарплата1</span>
+                        </div>
+                        <div class="side">
+                            <span class="amount coming">+706.15₽</span>
+                            <span class="material-icons">drag_handle</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="record-logo" src="img/icons/shopping-basket.svg"/>
+                        <div class="content">
+                            <span class="title">Зарплата2</span>
+                        </div>
+                        <div class="side">
+                            <span class="amount coming">+706.15₽</span>
+                            <span class="material-icons">drag_handle</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="record-logo" src="img/icons/shopping-basket.svg"/>
+                        <div class="content">
+                            <span class="title">Зарплата3</span>
+                        </div>
+                        <div class="side">
+                            <span class="amount coming">+706.15₽</span>
+                            <span class="material-icons">drag_handle</span>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img class="record-logo" src="img/icons/fuel-pump.svg"/>
+                        <div class="content">
+                            <span class="title">Налоги</span>
+                            <p class="description">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, illo, laborum. Atque cupiditate eius enim esse explicabo illum omnis sequi.
+                            </p>
+                        </div>
+                        <div class="side">
+                            <span class="amount cost">-30300.07₽</span>
+                            <span class="material-icons">drag_handle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="welcome-screen">
-            <div class="welcome-screen_line">Добро</div>
-            <div class="welcome-screen_line">пожаловать,</div>
-            <div class="welcome-screen_line">Кирилл</div>
+
+        <div class="item-info modal-content">
+            <div class="content_and_buttons">
+                <div class="content">
+                    <div class="logo_and_title">
+                        <div class="logo">
+                            <span class="material-icons">change_circle</span>
+                            <img src="img/icons/shopping-basket.svg"/>
+
+                        </div>
+                        <div class="title">
+                            <input id="title" type="text" placeholder="Заголовок операции"/>
+                        </div>
+                    </div>
+                    <div class="description">
+                        <textarea name="description" id="description" placeholder="Описание"></textarea>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <span class="material-icons">create</span>
+                    <span class="material-icons">delete</span>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="date"><input type="date"></div>
+                <div class="amount coming"><input type="text"/><span>+706.15₽</span></div>
+            </div>
+        </div>
+
+        <div class="icon-selection modal-content" style="z-index: 3">
+            <img src="img/icons/bus.svg" alt="bus"/>
+            <img src="img/icons/car.svg" alt="car"/>
+            <img src="img/icons/food.svg" alt="food"/>
+            <img src="img/icons/fuel-pump.svg" alt="fuel-pump"/>
+            <img src="img/icons/game-controller.svg" alt="game-controller"/>
+            <img src="img/icons/heartbeat.svg" alt="heartbeat"/>
+            <img src="img/icons/honesty.svg" alt="honestly"/>
+            <img src="img/icons/iphone.svg" alt="iphone"/>
+            <img src="img/icons/mortarboard.svg" alt="mortarboard"/>
+            <img src="img/icons/mortgage.svg" alt="mortgage"/>
+            <img src="img/icons/salary.svg" alt="salary"/>
+            <img src="img/icons/shirt.svg" alt="shirt"/>
+            <img class="selected" src="img/icons/shopping-basket.svg" alt="shopping-basket"/>
+            <img src="img/icons/taxes.svg" alt="taxes"/>
+            <img src="img/icons/traveling.svg" alt="traveling"/>
+
+
         </div>
     </div>
 </body>
@@ -31,7 +170,7 @@
         <div class="date"><span>6 Февраля 2021</span></div>
         <div class="items">
             <div class="item">
-                <img class="record-logo" src="img/shopping-basket.svg"/>
+                <img class="record-logo" src="img/icons/shopping-basket.svg"/>
                 <div class="content">
                     <span class="title">Зарплата1</span>
                 </div>
@@ -41,7 +180,7 @@
                 </div>
             </div>
             <div class="item">
-                <img class="record-logo" src="img/shopping-basket.svg"/>
+                <img class="record-logo" src="img/icons/shopping-basket.svg"/>
                 <div class="content">
                     <span class="title">Зарплата2</span>
                 </div>
@@ -51,7 +190,7 @@
                 </div>
             </div>
             <div class="item">
-                <img class="record-logo" src="img/shopping-basket.svg"/>
+                <img class="record-logo" src="img/icons/shopping-basket.svg"/>
                 <div class="content">
                     <span class="title">Зарплата3</span>
                 </div>
@@ -61,7 +200,7 @@
                 </div>
             </div>
             <div class="item">
-                <img class="record-logo" src="img/fuel-pump.svg"/>
+                <img class="record-logo" src="img/icons/fuel-pump.svg"/>
                 <div class="content">
                     <span class="title">Налоги</span>
                     <p class="description">
@@ -79,7 +218,7 @@
         <div class="date"><span>6 Февраля 2021</span></div>
         <div class="items">
             <div class="item">
-                <img class="record-logo" src="img/shopping-basket.svg"/>
+                <img class="record-logo" src="img/icons/shopping-basket.svg"/>
                 <div class="content">
                     <span class="title">Зарплата1</span>
                 </div>
@@ -89,7 +228,7 @@
                 </div>
             </div>
             <div class="item">
-                <img class="record-logo" src="img/shopping-basket.svg"/>
+                <img class="record-logo" src="img/icons/shopping-basket.svg"/>
                 <div class="content">
                     <span class="title">Зарплата2</span>
                 </div>
@@ -99,7 +238,7 @@
                 </div>
             </div>
             <div class="item">
-                <img class="record-logo" src="img/shopping-basket.svg"/>
+                <img class="record-logo" src="img/icons/shopping-basket.svg"/>
                 <div class="content">
                     <span class="title">Зарплата3</span>
                 </div>
@@ -109,7 +248,7 @@
                 </div>
             </div>
             <div class="item">
-                <img class="record-logo" src="img/fuel-pump.svg"/>
+                <img class="record-logo" src="img/icons/fuel-pump.svg"/>
                 <div class="content">
                     <span class="title">Налоги</span>
                     <p class="description">
@@ -162,7 +301,7 @@
     <a class="sign-in__button">
         <div class="sign-in__button_content">
             <span>Войти с помощью</span>
-            <img src="img/vk-logo.svg">
+            <img src="img/icons/vk-logo.svg">
         </div>
     </a>
 </div>

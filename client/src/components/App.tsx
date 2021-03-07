@@ -1,6 +1,6 @@
 import React from 'react';
 import RecordList from "./RecordsList/RecordList";
-import { AppContext } from './AppContext';
+import { AppContext, defaultAppContextValue } from './AppContext';
 import Authorization from './singleComponents/Authorization';
 import Balance from './singleComponents/Balance';
 import { AddRecordBtn } from './singleComponents/AddRecordBtn';
@@ -11,11 +11,12 @@ import WelcomeScreen from './singleComponents/WelcomeScreen';
 interface AppState {
     modalActive?: boolean,
     authorized?: boolean,
-    modalElement?: JSX.Element,
+    modalElements?: JSX.Element[],
     showWelcomeScreen?: boolean,
 }
 
 const AppContextValue = {
+    icons: defaultAppContextValue.icons,
     modal: {
         active: false,
         turnOn: undefined,
@@ -36,24 +37,31 @@ class App extends React.Component<any, AppState> {
         this.state = {
             modalActive: false,
             authorized: false,
+            modalElements: [],
             showWelcomeScreen: false,
         } as AppState;
 
-        this.turnOffModal = this.turnOffModal.bind(this);
-
         AppContextValue.modal.turnOn = (element : JSX.Element) => {
             if (element) {
-                this.setState({modalActive: true, modalElement: element});
+                this.setState((prevState) => {
+                  debugger;
+                  return {modalElements: [...prevState.modalElements, element]};
+                });
             } else {
-                this.setState({modalActive: true, modalElement: null});
+                this.setState({modalActive: true});
             }
         };
         AppContextValue.modal.turnOff = () => {
-            this.setState({modalActive: false, modalElement: null});
+            if (this.state.modalElements.length) {
+              this.setState((prevState) => {
+                const modalElements = [...prevState.modalElements];
+                modalElements.pop();
+                return {modalElements};
+              });
+            } else {
+              this.setState({modalActive: false});
+            }
         };
-    }
-    turnOffModal() : void {
-        this.setState({modalActive: false});
     }
     render() {
         const state = this.state;
@@ -95,11 +103,10 @@ class App extends React.Component<any, AppState> {
         return (
             <>
                 <div
-                    className={['modal', !state.modalActive ? 'off' : ''].join(' ')}
+                    className={['modal', state.modalActive || state.modalElements.length ? '' : 'off'].join(' ')}
+                    style={state.modalElements.length ? {zIndex: state.modalElements.length+1} : {}}
                     onClick={()=>{
-                        if (state.modalElement) {
-                            this.turnOffModal();
-                        }
+                      this.setState({modalActive: false});
                     }}
                 />
                 <div className="header"><span>Money Observer</span></div>
@@ -108,7 +115,14 @@ class App extends React.Component<any, AppState> {
                         content()
                     }
                     {
-                        state.modalActive && state.modalElement
+                      state.modalElements.map((el, idx)=>
+                        <div
+                          className='modal-content'
+                          key={idx}
+                          style={{zIndex: (idx+1)*2}}
+                          onClick={AppContextValue.modal.turnOff}
+                        >{el}</div>
+                      )
                     }
                     {
                         state.showWelcomeScreen &&

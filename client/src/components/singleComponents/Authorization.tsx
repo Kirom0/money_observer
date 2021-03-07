@@ -43,6 +43,7 @@ class Authorization extends React.Component<SignInProps, SignInState>{
       this.props.sendAuth(auth, needShowWelcomeScreen);
       return;
     }
+    setToken('');
     this.setState({ vk_oauth_uri: auth.vk_oauth_uri, loading: false});
   }
 

@@ -11,10 +11,7 @@ import { MONGODB_CONNECT_URI } from './config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(
-      MONGODB_CONNECT_URI,
-      //'mongodb+srv://kirom:1234qwer@cluster0.4fp4r.azure.mongodb.net/m_observer?retryWrites=true&w=majority',
-    ),
+    MongooseModule.forRoot(MONGODB_CONNECT_URI),
     MongooseModule.forFeature([
       { name: User.name, schema: UserSchema },
       { name: Record.name, schema: RecordSchema },

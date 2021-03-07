@@ -25,6 +25,7 @@
             position: absolute;
             opacity: 0;
             cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
             &.disabled {
               opacity: 0 !important;
               cursor: default !important;

@@ -396,6 +396,9 @@ template {
   resize: none;
   overflow: hidden;
 }
+.item-info .content_and_buttons .content .description textarea:disabled {
+  background: unset;
+}
 .item-info .content_and_buttons .buttons {
   display: flex;
   flex-direction: column;
@@ -424,7 +427,7 @@ template {
   margin: auto 0;
 }
 .item-info .footer .date input {
-  color: #999999;
+  color: #444;
   border: none;
   outline: none;
 }
@@ -745,8 +748,8 @@ template {
     opacity: 1;
   }
   100% {
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     width: 72px;
     height: 72px;
     opacity: 0;
@@ -902,7 +905,7 @@ template {
     margin-left: 50%;
   }
   100% {
-    margin-left: 0%;
+    margin-left: 0;
   }
 }
 @keyframes opacity-for-lines {
@@ -913,6 +916,38 @@ template {
     opacity: 1;
   }
 }
+.icon-selection {
+  background: white;
+  max-width: 460px;
+  width: 90%;
+  min-height: 240px;
+  height: 80%;
+  max-height: 500px;
+  border-radius: 0.5em;
+  padding: 1em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow-y: auto;
+}
+.icon-selection img {
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 25%;
+  padding: 2px;
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+@media (hover: hover) {
+  .icon-selection img:hover {
+    border: 2px solid #36ff50;
+    cursor: pointer;
+  }
+}
+.icon-selection img.selected {
+  border: 2px solid #4bbd5c;
+}
+
 * {
   margin: 0;
   padding: 0;
