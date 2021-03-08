@@ -8,12 +8,12 @@ Money-observer - Fullstack приложение предназначенное �
 
 ## Использованные технологии
 <ul>
-  <li>React - https://github.com/facebook/react</li>
-  <li>Nest - https://github.com/nestjs/nest</li>
-  <li>База данных - Mongoose - https://github.com/Automattic/mongoose</li>
-  <li>Управление данными - Redux, react-redux, redux-thunk - https://github.com/reduxjs/redux, https://github.com/reduxjs/react-redux, https://github.com/reduxjs/redux-thunk</li>
-  <li>Сборщик - Webpack - https://github.com/webpack/webpack</li>
-  <li>Язык - TypeScript - github.com/Microsoft/TypeScript</li>
+  <li>`React` - https://github.com/facebook/react</li>
+  <li>`Nest` - https://github.com/nestjs/nest</li>
+  <li>База данных - `Mongoose` - https://github.com/Automattic/mongoose</li>
+  <li>Управление данными - `Redux`, `react-redux`, `redux-thunk` - https://github.com/reduxjs/redux, https://github.com/reduxjs/react-redux, https://github.com/reduxjs/redux-thunk</li>
+  <li>Сборщик - `Webpack` - https://github.com/webpack/webpack</li>
+  <li>Язык - `TypeScript` - github.com/Microsoft/TypeScript</li>
 </ul>
 
 ## Установка
@@ -23,7 +23,7 @@ $ npm install
 $ cd client && install
 ```
 
-Затем в корневой папке необходимо создать файл development.env со следующими полями:
+Затем в корневой папке необходимо создать файл `development.env` со следующими полями:
 ```
 DB_LOGIN=*Логин в базе данных Mongo*
 DB_PASSWORD=*Пароль*
