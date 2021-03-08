@@ -1,6 +1,6 @@
 ## Описание
 
-Money-observer - Fullstack приложение предназначенное для трекинга личных финансов. Frontend написан на [React](https://github.com/facebook/react), Backend на [Nest](https://github.com/nestjs/nest).
+Money-observer - Fullstack приложение предназначенное для отслеживания личных финансов. Frontend написан на [React](https://github.com/facebook/react), Backend на [Nest](https://github.com/nestjs/nest).
 
 ## Демонстрация
 
@@ -8,12 +8,12 @@ Money-observer - Fullstack приложение предназначенное �
 
 ## Использованные технологии
 <ul>
-  <li>[React](https://github.com/facebook/react)</li>
-  <li>[Nest](https://github.com/nestjs/nest)</li>
-  <li>База данных - [Mongoose](https://github.com/Automattic/mongoose)</li>
-  <li>Управление данными - [Redux](https://github.com/reduxjs/redux), [react-redux](https://github.com/reduxjs/react-redux), [redux-thunk](https://github.com/reduxjs/redux-thunk)</li>
-  <li>Сборщик [Webpack](https://github.com/webpack/webpack)</li>
-  <li>Язык [TypeScript](github.com/Microsoft/TypeScript)</li>
+  <li>React - https://github.com/facebook/react</li>
+  <li>Nest - https://github.com/nestjs/nest</li>
+  <li>База данных - Mongoose - https://github.com/Automattic/mongoose</li>
+  <li>Управление данными - Redux, react-redux, redux-thunk - https://github.com/reduxjs/redux, https://github.com/reduxjs/react-redux, https://github.com/reduxjs/redux-thunk</li>
+  <li>Сборщик - Webpack - https://github.com/webpack/webpack</li>
+  <li>Язык - TypeScript - github.com/Microsoft/TypeScript</li>
 </ul>
 
 ## Установка
@@ -43,4 +43,4 @@ $ npm run all:dev
 
 ## Контакты
 
-- Author - [Кирилл Мещеряков](kiromekexity@gmail.com)
+- Author: Кирилл Мещеряков - kiromekexity@gmail.com
