@@ -1,0 +1,40 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  overflow: hidden;
+  opacity: 0.7;
+  z-index: 1;
+  transition-duration: 0.5s;
+  visibility: visible;
+  touch-action: none;
+  &.off {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.modal-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  & > *:first-child{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto !important;
+  }
+}
+
+.modal-like {
+  position: relative;
+  z-index: 2;
+}

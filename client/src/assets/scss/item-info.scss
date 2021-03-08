@@ -1,0 +1,200 @@
+@import "variables";
+
+.item-info {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border: 1px solid #999;
+
+  .content_and_buttons {
+    flex: 1;
+    //background: chocolate;
+    display: flex;
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      .logo_and_title {
+        border-bottom: 1px solid lightgray;
+        display: flex;
+        .logo {
+          span {
+            overflow: hidden;
+            text-align: center;
+            color: gray;
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            &.disabled {
+              opacity: 0 !important;
+              cursor: default !important;
+            }
+            &:hover {
+              opacity: 0.4;
+            }
+          }
+        }
+        .title {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          #title {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+          }
+        }
+      }
+      .description {
+        flex: 1;
+        textarea {
+          width: 100%;
+          height: 100%;
+          border:none;
+          outline: none;
+          resize: none;
+          overflow: hidden;
+          &:disabled {
+            background: unset;
+          }
+        }
+      }
+    }
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid lightgray;
+      span {
+        color: gray;
+        cursor: pointer;
+        border: 1px solid white;
+        @media(hover: hover) {
+          &:hover {
+            border: 1px solid lightgray;
+          }
+        }
+        &.active {
+          background: lightgray;
+          border: 1px solid lightgray;
+        }
+      }
+    }
+  }
+
+  .footer {
+    border-top: 1px solid lightgray;
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      margin: auto 0;
+    }
+    .date input {
+      color: #444;
+      border: none;
+      outline: none ;
+    }
+
+    .amount {
+
+      font-weight: bold;
+      position: relative;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      input {
+        width: 100%;
+        text-align: right;
+        opacity: 0;
+        position: absolute;
+        left:0;
+        outline: none;
+        border: none;
+        &:focus {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.item-info {
+  min-height: 240px;
+  max-height: 300px;
+  height: 80%;
+  max-width: 420px;
+  width: 90%;
+  border-radius: 0.5em;
+  .content_and_buttons {
+    .content {
+      margin-left: 0.5em;
+      .logo_and_title {
+        flex-basis: 3em;
+        margin-top: 0.5em;
+        padding-bottom: 0.5em;
+        .logo {
+          flex-basis: 3em;
+          width: 3em;
+          height: 3em;
+          border-radius: 0.5em;
+          img {
+            width: 3em;
+            height: 3em;
+          }
+          span {
+            font-size: 2.5em;
+            height: 1.2em;
+            width: 1.2em;
+            line-height: 1.2em;
+          }
+        }
+        .title {
+          padding-left: 0.5em;
+          #title {
+            font-size: 1.15em;
+          }
+        }
+      }
+      .description {
+        padding: 0.5em;
+      }
+    }
+    .buttons {
+      flex-basis: 3em;
+      span {
+        margin: 0.7em auto 0 auto;
+        padding: 0.3em;
+        border-radius: 0.5em;
+      }
+    }
+  }
+  .footer {
+    flex-basis: 3em;
+    padding: 0 0.5em;
+    .date input {
+      font-size: 1em;
+      width: 10em;
+    }
+    .amount {
+      flex-basis: 10em;
+      input {
+        font-size: 1.25em;
+      }
+      span {
+        font-size: 1.25em;
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-1 + 1) {
+  .item-info {
+    max-width: unset;
+    width: 460px;
+    font-size: 20px;
+  }
+}

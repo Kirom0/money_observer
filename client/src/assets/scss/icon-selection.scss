@@ -1,0 +1,36 @@
+@import "variables";
+
+.icon-selection {
+  background: white;
+  max-width: 460px;
+  width: 90%;
+
+  min-height: 240px;
+  height: 80%;
+  max-height: 500px;
+  border-radius: 0.5em;
+  padding: 1em;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  overflow-y: auto;
+
+  img {
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 25%;
+    padding: 2px;
+    border: 2px solid rgba(0,0,0,0);
+    @media(hover: hover) {
+      &:hover {
+        border: 2px solid #36ff50;
+        cursor: pointer;
+      }
+    }
+    &.selected {
+      border: 2px solid #4bbd5c;
+    }
+  }
+}
