@@ -43,4 +43,4 @@ $ npm run all:dev
 
 ## Контакты
 
-- Author: Кирилл Мещеряков - kiromekexity@gmail.com
+- Author: Кирилл Мещеряков - kiromekexity@gmail.com [Telegram](https://t.me/KiromEkexity)
