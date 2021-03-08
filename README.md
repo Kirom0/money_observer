@@ -1,73 +1,46 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+## Описание
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Money-observer - Fullstack приложение предназначенное для трекинга личных финансов. Frontend написан на [React](https://github.com/facebook/react), Backend на [Nest](https://github.com/nestjs/nest).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Демонстрация
 
-## Description
+[![Watch the video](https://i.ibb.co/d50mTn0/Preview.png)](https://youtu.be/gecc7Umghek)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Использованные технологии
+<ul>
+  <li>[React](https://github.com/facebook/react)</li>
+  <li>[Nest](https://github.com/nestjs/nest)</li>
+  <li>База данных - [Mongoose](https://github.com/Automattic/mongoose)</li>
+  <li>Управление данными - [Redux](https://github.com/reduxjs/redux), [react-redux](https://github.com/reduxjs/react-redux), [redux-thunk](https://github.com/reduxjs/redux-thunk)</li>
+  <li>Сборщик [Webpack](https://github.com/webpack/webpack)</li>
+  <li>Язык [TypeScript](github.com/Microsoft/TypeScript)</li>
+</ul>
 
-## Installation
+## Установка
 
 ```bash
 $ npm install
+$ cd client && install
 ```
 
-## Running the app
+Затем в корневой папке необходимо создать файл development.env со следующими полями:
+```
+DB_LOGIN=*Логин в базе данных Mongo*
+DB_PASSWORD=*Пароль*
+DB_NAME=*Имя базы данных*
+
+VK_CLIENT_ID=*Поле client_id приложения в ВК, предназначенного для авторизации пользователей*
+VK_CLIENT_SECRET=*Поле client_secret*
+VK_REDIRECT_URI=*Текущее доменное имя приложения, например: http://localhost:3000/*
+```
+
+## Запуск
 
 ```bash
 # development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ npm run all:dev
 ```
 
-## Test
+## Контакты
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- Author - [Кирилл Мещеряков](kiromekexity@gmail.com)
