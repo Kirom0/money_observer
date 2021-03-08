@@ -7,14 +7,14 @@ Money-observer - Fullstack приложение предназначенное �
 [![Watch the video](https://i.ibb.co/d50mTn0/Preview.png)](https://youtu.be/gecc7Umghek)
 
 ## Использованные технологии
-<ul>
-  <li>`React` - https://github.com/facebook/react</li>
-  <li>`Nest` - https://github.com/nestjs/nest</li>
-  <li>База данных - `Mongoose` - https://github.com/Automattic/mongoose</li>
-  <li>Управление данными - `Redux`, `react-redux`, `redux-thunk` - https://github.com/reduxjs/redux, https://github.com/reduxjs/react-redux, https://github.com/reduxjs/redux-thunk</li>
-  <li>Сборщик - `Webpack` - https://github.com/webpack/webpack</li>
-  <li>Язык - `TypeScript` - github.com/Microsoft/TypeScript</li>
-</ul>
+
++ul `React` - https://github.com/facebook/react
++ul `Nest` - https://github.com/nestjs/nest
++ul База данных - `Mongoose` - https://github.com/Automattic/mongoose
++ul Управление данными - `Redux`, `react-redux`, `redux-thunk` - https://github.com/reduxjs/redux, https://github.com/reduxjs/react-redux, https://github.com/reduxjs/redux-thunk
++ul Сборщик - `Webpack` - https://github.com/webpack/webpack
++ul Язык - `TypeScript` - github.com/Microsoft/TypeScript
+
 
 ## Установка
 
